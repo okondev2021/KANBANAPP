@@ -2,9 +2,9 @@ import {column_arrangement, setDimension, createBoard, getNumberOfColumnField, c
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // if(!navigator.onLine){
-    //     window.location.assign('offline.html')
-    // }
+    if(!navigator.onLine){
+        window.location.assign('offline.html')
+    }
 
 
 
