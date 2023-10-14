@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KANBAN</title>
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="index.js"></script>
+    <script>
+        //if browser support service worker
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./serviceworker.js');
+        };
+    </script>
 </head>
 <body class="w-full h-full bg-primary-200">
     <main class="relative w-full h-full max-h-screen bg-primary-200 cursor-context-menu">
