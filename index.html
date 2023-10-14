@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANBAN</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="index.js"></script>
+</head>
+<body class="w-full h-full bg-primary-200">
+    <main class="relative w-full h-full max-h-screen bg-primary-200 cursor-context-menu">
+        <!-- HEADER -->
+        <header class="fixed top-0 left-0 right-0 z-30 grid w-full h-24 grid-cols-4 bg-primary-100 border-line border-b-small md:grid-cols-5">
+            <div class="col-span-1 flex_all border-line border-r-small md:col-span-2 mobile:hidden">
+                <img src="./assets/logo-light.svg" alt="">
+            </div>
+            <section class="col-span-3 flex_all md:col-span-3 mobile:col-span-5 mobile:gap-4">
+                <div class="flex items-center gap-4 mobile:gap-2">
+                    <img class="hidden mobile:block" src="./assets/logo-mobile.svg" alt="">
+                   <div class="flex items-baseline gap-4">
+                        <h1 class="text-2xl font-bold text-white uppercase boardName md:text-lg mobile:text-base "></h1>
+                        <img class="hidden transition duration-300 ease-linear cursor-pointer mobileNavBar mobile:block" src="./assets/icon-chevron-down.svg" alt="">
+                   </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button class="px-6 py-3 text-sm font-medium text-white transition duration-300 ease-linear rounded-l-full rounded-r-full addTaskBtn bg-tertiarty-200 hover:bg-tertiarty-100 mobile:before:content-addTask mobile:px-5 mobile:py-1"><span class="mobile:hidden">+Add New task</span></button>
+                    <div class="px-2 py-2 transition duration-300 ease-linear rounded-t-full rounded-b-full cursor-pointer boardSettingBtn hover:bg-primary-200 ">
+                        <img class="h-5" src="./assets/icon-vertical-ellipsis.svg" alt="">
+                    </div>
+                </div>
+            </section>
+        </header>
+        <!-- END OF HEADER -->
+
+        <!-- IMPORTANT -->
+        <section id="main_container" class="relative h-full overflow-auto">
+            <!--BOARD SETTINGS -->
+            <article class="fixed hidden pl-4 pr-12 mr-3 rounded-md shadow-md boardSetting right-2 top-28 bg-primary-100">
+                <ul>
+                    <li class="mb-4 cursor-pointer editBoardBtn text-secondary">Edit Boards</li>
+                    <li class="mb-4 text-red-500 cursor-pointer deleteBoard">Delete Board</li>
+                </ul>
+            </article>
+            <!--END OF BOARD SETTINGS -->
+            <!-- ASIDE -->
+            <aside class="fixed z-20 pt-4 overflow-hidden transition-all duration-300 ease-linear asidetoggleVisible bg-primary-100 border-line border-r-small mobile:min-h-screen mobile:w-10/12 mobile:left-small mobile:right-small mobile:mt-4 mobile:rounded-lg mobile:hidden">
+                <section class="relative overflow-y-auto asideTop h-4/6">
+                    <h3 class="pl-10 mb-4 text-sm font-medium uppercase text-secondary">All Boards <span class="boardCount"></span></h3>
+                    <!-- BOARDS -->
+                    <section class="flex flex-col mr-4 boardContainer mobile:mr-0"></section>
+                    <!-- END BOARDS -->
+                    <div class="flex items-center gap-4 py-3 pl-10 overflow-hidden font-bold cursor-pointer createNewBoard text-tertiarty-200">
+                        <img src="./assets/icon-board.svg" alt="">
+                        <h3 class="overflow-hidden">+Create New Board</h3>
+                    </div>
+                </section>
+        
+                <!-- ASIDE BOTTOM -->
+                <section class="absolute bottom-0 left-0 right-0 w-full pb-4 mobile:static">
+                    <div id="theme" class="flex justify-center w-3/4 gap-5 px-5 py-4 mx-auto overflow-hidden rounded-md cursor-pointer bg-primary-200">
+                        <img class="w-5 h-5" src="./assets/icon-light-theme.svg" alt="">
+                        <div class="flex items-center justify-end w-12 h-6 p-1 rounded-l-full rounded-r-full bg-tertiarty-200"><span class="block w-4 h-4 bg-white rounded-full"></span></div>
+                        <img class="w-5 h-5" src="./assets/icon-dark-theme.svg" alt="">             
+                    </div>
+        
+                    <div class="flex items-center gap-4 py-4 pl-10 mr-6 overflow-hidden font-bold transition-all duration-300 ease-linear rounded-r-full cursor-pointer asideVisibility text-secondary hover:bg-white mobile:hidden">
+                        <svg class="overflow-hidden" width="18" height="16" xmlns="http://www.w3.org/2000/svg"><path class="" d="M8.522 11.223a4.252 4.252 0 0 1-3.654-5.22l3.654 5.22ZM9 12.25A8.685 8.685 0 0 1 1.5 8a8.612 8.612 0 0 1 2.76-2.864l-.86-1.23A10.112 10.112 0 0 0 .208 7.238a1.5 1.5 0 0 0 0 1.524A10.187 10.187 0 0 0 9 13.75c.414 0 .828-.025 1.239-.074l-1-1.43A8.88 8.88 0 0 1 9 12.25Zm8.792-3.488a10.14 10.14 0 0 1-4.486 4.046l1.504 2.148a.375.375 0 0 1-.092.523l-.648.453a.375.375 0 0 1-.523-.092L3.19 1.044A.375.375 0 0 1 3.282.52L3.93.068a.375.375 0 0 1 .523.092l1.735 2.479A10.308 10.308 0 0 1 9 2.25c3.746 0 7.031 2 8.792 4.988a1.5 1.5 0 0 1 0 1.524ZM16.5 8a8.674 8.674 0 0 0-6.755-4.219A1.75 1.75 0 1 0 12.75 5v-.001a4.25 4.25 0 0 1-1.154 5.366l.834 1.192A8.641 8.641 0 0 0 16.5 8Z" fill="#828FA3"/></svg>
+                        <h2>Hide Sidebar</h2>
+                    </div>
+                </section>
+                <!-- END ASIDE BOTTOM -->
+            </aside>
+            <!-- END OF ASIDE -->
+            <!-- ASIDE REVEAL BTN -->
+            <div class="fixed bottom-0 items-center justify-center hidden py-6 pl-8 pr-4 mb-8 transition-all duration-300 ease-linear rounded-r-full cursor-pointer asideRevealBtn bg-tertiarty-200 hover:bg-tertiarty-100 mobile:hidden">
+                <img src="./assets/icon-show-sidebar.svg" alt="">
+            </div>
+            <!-- END OF ASIDE REVEAL BTN -->
+            <!-- BOARD_COLUMN -->
+            <section class="flex gap-8 py-6 transition-all duration-300 ease-linear board_column px-11 flex-nowrap">
+                <section class="flex gap-8 boardColumnContainer flex-nowrap ">
+                </section>
+                <div class="flex items-center justify-center text-xl font-extrabold transition-all duration-300 ease-linear rounded-md cursor-pointer column addNewColumn text-secondary addColumnBg hover:text-tertiarty-200">+ New Column</div>   
+            </section>
+            <!-- END OF BOARD_COLUMN -->
+        </section>
+        <!-- END OF IMPORTANT -->
+    </main>
+
+    <section class="fixed top-0 left-0 z-40 items-center justify-center hidden w-full h-screen min-h-screen py-4 overflow-auto bg-black bg-opacity-50 overLay max-h-doubleScreen mobile:py-0">
+        <!-- CRUD OPERATION  -->
+        <section class="hidden w-1/3 p-5 mx-auto overflow-hidden rounded-lg crudSection max-h-doubleScreen bg-primary-200 md:w-4/6 mobile:w-full mobile:h-full mobile:rounded-none">
+            <div class="flex items-center justify-between mb-4 mobile:pt-8">
+                <h2 class="text-2xl font-bold text-white boardCreationTitle"></h2>
+                <img class="cursor-pointer closeBoardCreationForm" src="./assets/icon-cross.svg" alt="">
+            </div>
+            <!-- CREATE BOARD -->
+            <form class="hidden mt-4" id="createBoardColumnForm">
+                    <div class="input_div inputContainer">
+                        <label class="label">Name</label>
+                        <input id="boardInputName" class="boardInput boardInputName border-line " type="text">
+                    </div>
+                    <label class="label">Columns</label>
+                    <div class="w-full mb-4 column_input_container">
+                        <div class="column_input_div default_colum_input">
+                            <input class="boardInput border-line boardInputColumn default_colum_inputField" type="text">
+                        </div>
+                    </div>
+                    <div class="flex flex-col w-full createBoardBtn">
+                        <button class="py-2 mb-4 font-semibold bg-white rounded-l-full rounded-r-full addColumn text-tertiarty-200">+Add New Column</button>
+                        <button class="py-2 mb-4 font-semibold text-white rounded-l-full rounded-r-full saveBoard bg-tertiarty-200">Save New Board</button>
+                    </div>
+            </form> 
+
+            <form class="hidden mt-4" id='addTask'> 
+                <div class=" inputContainer">
+                    <label class="label">Title</label>
+                    <input class="addTaskInputField taskInputField taskTitle" type="text">
+                </div>
+                <div class=" inputContainer">
+                    <label class="label">Description</label>
+                    <textarea class="h-24 addTaskInputField taskDescription" placeholder="Optional"></textarea>
+                </div>
+                <div class=" inputContainer">
+                    <label class="label">Subtasks</label>
+                    <div class="subtaskContainer">
+                        <div class="subTaskInputContainer">
+                            <input class="addTaskInputField taskInputField subTaskInput" type="text">
+                            <div class="cursor-pointer closeColumnField">
+                                <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg"><g fill="#828FA3" fill-rule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g></svg>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+                <button class="w-full py-2 mb-4 font-semibold bg-white rounded-l-full rounded-r-full addNewSubTaskInput text-tertiarty-200">+Add New Subtask</button>
+                <div class=" inputContainer">
+                    <label class="label">Status</label>
+                    <select class="text-white bg-red-700 cursor-pointer addTaskInputField">     
+                    </select>
+                </div>
+                <div class="flex flex-col w-full">
+                    <button class="py-2 mb-4 font-semibold text-white rounded-l-full rounded-r-full saveCreatedTask bg-tertiarty-200">Create Task</button>
+                </div>
+            </form>
+            <!-- END OF CREATE BOARD -->
+        </section>
+        <!-- END OF CRUD OPERATION  -->
+        <!-- TASK INFO -->
+        <section class="relative hidden w-1/3 p-8 text-white rounded-lg taskBoardInfo bg-primary-100 md:w-4/6 mobile:w-full mobile:h-full mobile:rounded-none">
+            <div id="taskSettingItems" class="absolute hidden pt-4 pl-4 pr-12 mr-3 rounded-md shadow-lg -right-20 top-24 bg-primary-200 mobile:right-2">
+                <ul>
+                    <li class="mb-4 text-red-500 cursor-pointer deleteTask">Delete Task</li>
+                    <li class="mb-4 text-white cursor-pointer closeTask">Close Task Board</li>
+                </ul>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+                <h1 id="taskTitle" class="text-lg font-semibold"></h1>
+                <div class="px-2 py-2 transition duration-300 ease-linear rounded-t-full rounded-b-full cursor-pointer taskSettinng hover:bg-primary-200 ">
+                    <img class="h-6 cursor-pointer" src="./assets/icon-vertical-ellipsis.svg" alt="">
+                </div>
+            </div>
+            <p id="taskDescription" class="py-4 pt-2 mt-2 text-sm leading-6 break-all text-secondary "></p>
+            <div class="mt-4">
+                <h3 class="text-sm font-semibold">Subtasks<span id="doneTaskCount"></span></h3>
+                <div class="flex flex-col gap-3 pt-2 viewSubtasks"></div>
+            </div>
+            <div class="mt-4">
+                <h2 class="text-xs font-semibold">Current Status</h2>
+                <div class="w-full py-2 pl-3 mt-2 text-sm border-2 rounded-md cursor-pointer taskColumnName border-secondary"></div>
+            </div>
+        </section>
+        <!-- END TASK INFO -->
+        <!-- DELETE CONFIRMATION -->
+        <section class="ConfirmDelete deleteConfirmation">
+            <div>
+                <h1 class="deleteWarningHeader deleteConfirmationHeader"></h1>
+                <p class="deleteWarningText deleteConfirmationText"></p>
+                <div class="boardConfirmationContainer deleteActionContainer">
+                    <button class="confirmBoardDelete deleteComfirmationBtn">Delete</button>
+                    <button class="closeConfirmationModal deleteConfirmationClearBtn">Cancel</button>
+                </div>
+            </div>
+        </section>
+        <!-- END OF DELETE CONFIRMATION -->
+        <!-- TASK DELETE CONFIRMATION -->
+        <section class="taskConfirmDelete deleteConfirmation">
+            <div>
+                <h1 class="taskDeleteWarningHeader deleteConfirmationHeader"></h1>
+                <p class="taskDeleteWarningText deleteConfirmationText"></p>
+                <div class="taskConfirmationContainer deleteActionContainer">
+                    <button class="confirmtaskDelete deleteComfirmationBtn">Delete</button>
+                    <button class="closeTaskConfirmationModal deleteConfirmationClearBtn">Cancel</button>
+                </div>
+            </div>
+        </section>
+        <!-- END OF TASK DELETE CONFIRMATION -->
+    </section>
+
+</body>
+</html>
