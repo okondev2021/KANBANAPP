@@ -1,0 +1,5 @@
+<div id="theme" class="flex justify-center w-3/4 gap-5 px-5 py-4 mx-auto overflow-hidden rounded-md cursor-pointer bg-primary-200">
+    <img class="w-5 h-5" src="./assets/icon-light-theme.svg" alt="">
+    <div class="flex items-center justify-end w-12 h-6 p-1 rounded-l-full rounded-r-full bg-tertiarty-200"><span class="block w-4 h-4 bg-white rounded-full"></span></div>
+    <img class="w-5 h-5" src="./assets/icon-dark-theme.svg" alt="">             
+</div>
