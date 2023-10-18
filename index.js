@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // remove the data-name attribute, when creating a new board 
         const boardNameField = document.getElementById('boardInputName')
         boardNameField.removeAttribute('data-name');
+        // 
         document.querySelector('.boardCreationTitle').innerHTML = "Add New Board"
         document.querySelector('#createBoardColumnForm').style.display = 'block'
         document.querySelector('.addColumn').style.display = 'block'
@@ -201,8 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // 
             postBoardCreation(boardName)
             clearAllInputFields()
+            clearCrudSection()
         }
-        clearCrudSection()
+        
     })
 
 
